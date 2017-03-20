@@ -1,8 +1,10 @@
+from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 from django.utils import timezone
 
-from blog.forms import PostForm
+from blog.forms import PostForm,SignUpForm
 
 from .models import Category,Blog
 
@@ -45,27 +47,20 @@ def post_new(request):
             post.category =  Category.objects.get(title='Default')
             post.save()
 
-            return render(request, 'post.html', {
-                'post': post
-            })
+            return HttpResponseRedirect('/blog')
     else:
         form = PostForm()
     return render(request, 'new_post.html', {'form': form})
 
 def sign_up(request):
     if request.method == "POST":
-        form = PostForm(request.POST)
+        form = SignUpForm(request.POST)
         if form.is_valid():
-
-            post = form.save(commit=False)
-            post.author = request.user
-            post.posted = timezone.now()
-            post.category =  Category.objects.get(title='Default')
-            post.save()
-
-            return render(request, 'post.html', {
-                'post': post
-            })
+            user = User.objects.create_user(
+            username=form.cleaned_data['username'],
+            password=form.cleaned_data['password'],
+            email=form.cleaned_data['email'])
+            return HttpResponseRedirect('/blog')
     else:
-        form = PostForm()
-    return render(request, 'new_post.html', {'form': form})
+        form = SignUpForm()
+    return render(request, 'sign_up.html', {'form': form})
