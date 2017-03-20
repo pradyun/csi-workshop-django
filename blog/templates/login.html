@@ -1,0 +1,43 @@
+{% extends 'mBase.html' %}
+{% block content %}
+    {% if form.errors %}
+
+<p>Your username and password didn't match. Please try again.</p>
+{% endif %}
+<style>
+
+    .margin-tp{
+    margin-top:40px;
+    }
+</style>
+<body>
+	<div class="content">
+    		<main class="container">
+    		<section class="content">
+			<h1>Please Sign In</h1>
+    		</section>
+                <form method="post" action="{% url 'login' %}">
+{% csrf_token %}
+
+           
+                            <table class="margin-tp">
+                                <tr>
+                                    <td>{{ form.username.label_tag }}</td>
+                                    <td>{{ form.username }}</td>
+                                </tr>
+                                <tr>
+                                    <td>{{ form.password.label_tag }}</td>
+                                    <td>{{ form.password }}</td>
+                                </tr>
+                            </table>
+                            <div class="margin-tp">
+                                <input class="btn" type="submit" value="login" />
+				                <input class="btn" style="background-color:#333333" type="submit" value="Signup" />
+                            </div>
+                        </p>
+                        <input type="hidden" name="next" value="{{ next }}" />
+                    </form>
+                
+
+{% endblock %}
+

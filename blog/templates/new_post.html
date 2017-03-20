@@ -1,0 +1,21 @@
+{% extends 'mBase.html' %}
+
+{% block content %}
+<style>
+    label{display:block;}
+</style>
+<body>
+<div class=content>
+    <main class="container">
+		<section class="content">
+			<h1>New post</h1>
+        </section>
+
+    <form method="POST" class="post-form">{% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="save btn btn-default">Save</button>
+    </form>
+    </main>
+</div>
+</body>
+{% endblock content %}
