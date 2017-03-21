@@ -1,0 +1,34 @@
+#Django unchained
+
+1.Introduction
+-Made in Django-Instagram,Pintrest,Spotify,NASA,The Onion,Bit bucket
+
+2.How Web Works (workflow)
+-Http Request
+-Web server
+
+3.Django Introduction
+-Starting a project/app
+
+4.Hello World Program
+-settings.py
+-views.py
+-urls.py
+-run server
+
+5.Fan Site
+-Game of thrones fan site
+-Overview of functionality
+--Fan Posts
+--User Login
+--User Registeration
+
+6.Making the models for fansite
+-Blog
+-Category
+
+7.
+7.What Next
+-Middleware
+-Signals
+13.Finish
